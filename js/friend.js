@@ -1,12 +1,37 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const friends = {
-        // 用户提供的原始JSON数据
-        "normal": [/*...*/],
-        "abnormal": [/*...*/]
-    };
-
+document.addEventListener('DOMContentLoaded', async () => {
     const container = document.querySelector('.links-content');
     if (!container) return;
+
+    try {
+        // 使用现代Fetch API动态加载JSON数据
+        const response = await fetch('/internal_data/friends.json', {
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                cache: 'no-cache' // 或 'force-cache'
+                // 可添加身份验证头
+                // 'X-Auth-Token': 'your_token' 
+            }),
+            credentials: 'same-origin' // 根据CORS需求配置
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP错误! 状态码: ${response.status}`);
+        }
+
+        const friends = await response.json();
+        
+        // 数据校验
+        if (!friends.normal || !friends.abnormal) {
+            throw new Error('JSON结构不合法');
+        }
+
+        // 渲染逻辑（保持原有逻辑不变）
+        renderFriends(friends);
+
+    } catch (error) {
+        console.error('友链加载失败:', error);
+        container.innerHTML = `<div class="alert">友链数据加载失败，请稍后刷新 (错误码: ${error.message})</div>`;
+    }
 
     // 创建友链容器
     const createFriendContainer = () => {
