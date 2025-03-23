@@ -1,0 +1,81 @@
+/* 友链容器 */
+.friend-links {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* 友链卡片 */
+.friend-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--card-bg);
+    box-shadow: 0 2px 8px var(--card-shadow);
+}
+
+/* 头像样式 */
+.friend-avatar {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/* 信息区域 */
+.friend-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.friend-name {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.friend-desc {
+    margin: 0.5em 0;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+/* 附加信息 */
+.friend-extra {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.friend-status {
+    color: var(--red);
+    font-size: 0.85em;
+}
+
+.friend-remark {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .friend-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .friend-extra {
+        text-align: center;
+    }
+}
