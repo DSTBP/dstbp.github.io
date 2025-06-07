@@ -11706,7 +11706,7 @@ body:before {
   bottom: 0;
   left: 0;
   opacity: 0.7;
-  background: url("/img/4444.jpg") no-repeat center/cover, repeating-linear-gradient(45deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 10px, transparent 10px, transparent 20px), linear-gradient(135deg, #faf3e0, #f5e6ca);
+  background: url("/img/4442.jpg") no-repeat center/cover, repeating-linear-gradient(45deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 10px, transparent 10px, transparent 20px), linear-gradient(135deg, #faf3e0, #f5e6ca);
 }
 .navbar {
   background-color: rgba(255,255,255,0.7);
