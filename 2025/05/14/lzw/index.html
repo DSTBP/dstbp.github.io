@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[信息编码] LZW 压缩算法 - DSTBP Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DSTBP Blog"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DSTBP Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 引言最近发现一个在线塔防策略游戏网站：https:&amp;#x2F;&amp;#x2F;yorg.io&amp;#x2F;，基本玩法是昼夜交替的生存挑战，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。   图 1.1"><meta property="og:type" content="article"><meta property="og:title" content="[信息编码] LZW 压缩算法"><meta property="og:url" content="http://dstbp.com/2025/05/14/lzw/"><meta property="og:site_name" content="DSTBP Blog"><meta property="og:description" content="1. 引言最近发现一个在线塔防策略游戏网站：https:&amp;#x2F;&amp;#x2F;yorg.io&amp;#x2F;，基本玩法是昼夜交替的生存挑战，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。   图 1.1"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919221611.png"><meta property="article:published_time" content="2025-05-14T07:10:43.000Z"><meta property="article:modified_time" content="2025-06-23T14:38:51.584Z"><meta property="article:author" content="DSTBP"><meta property="article:tag" content="密码学"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919221611.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://dstbp.com/2025/05/14/lzw/"},"headline":"[信息编码] LZW 压缩算法","image":["https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919221611.png"],"datePublished":"2025-05-14T07:10:43.000Z","dateModified":"2025-06-23T14:38:51.584Z","author":{"@type":"Person","name":"DSTBP"},"publisher":{"@type":"Organization","name":"DSTBP Blog","logo":{"@type":"ImageObject","url":{"light":"/images/logo.jpg","dark":"/images/logo-dark.jpg"}}},"description":"1. 引言最近发现一个在线塔防策略游戏网站：https:&#x2F;&#x2F;yorg.io&#x2F;，基本玩法是昼夜交替的生存挑战，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。   图 1.1"}</script><link rel="canonical" href="http://dstbp.com/2025/05/14/lzw/"><link rel="alternate" href="/atom.xml" title="DSTBP Blog" type="application/atom+xml"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="/css/font/fontawesome/css/all.min.css"><link data-pjax rel="stylesheet" href="/js/imaegoo/highlight.js/11.7.0/styles/atom-one-light.css"><link data-pjax rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="https://vercount.one/js" defer></script><link rel="stylesheet" href="/js/imaegoo/lightgallery/1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="/js/imaegoo/justifiedGallery/3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-K9WLQN9BFY" async></script><script>window.dataLayer = window.dataLayer || [];
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[信息编码] LZW 压缩算法 - DSTBP Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DSTBP Blog"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DSTBP Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="1. 引言最近发现一个在线塔防策略游戏网站：https:&amp;#x2F;&amp;#x2F;yorg.io&amp;#x2F;，基本玩法是昼夜交替的生存挑战，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。   图 1.1"><meta property="og:type" content="article"><meta property="og:title" content="[信息编码] LZW 压缩算法"><meta property="og:url" content="http://dstbp.com/2025/05/14/lzw/"><meta property="og:site_name" content="DSTBP Blog"><meta property="og:description" content="1. 引言最近发现一个在线塔防策略游戏网站：https:&amp;#x2F;&amp;#x2F;yorg.io&amp;#x2F;，基本玩法是昼夜交替的生存挑战，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。   图 1.1"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919221611.png"><meta property="article:published_time" content="2025-05-14T07:10:43.000Z"><meta property="article:modified_time" content="2025-06-23T14:47:23.559Z"><meta property="article:author" content="DSTBP"><meta property="article:tag" content="密码学"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919221611.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://dstbp.com/2025/05/14/lzw/"},"headline":"[信息编码] LZW 压缩算法","image":["https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919221611.png"],"datePublished":"2025-05-14T07:10:43.000Z","dateModified":"2025-06-23T14:47:23.559Z","author":{"@type":"Person","name":"DSTBP"},"publisher":{"@type":"Organization","name":"DSTBP Blog","logo":{"@type":"ImageObject","url":{"light":"/images/logo.jpg","dark":"/images/logo-dark.jpg"}}},"description":"1. 引言最近发现一个在线塔防策略游戏网站：https:&#x2F;&#x2F;yorg.io&#x2F;，基本玩法是昼夜交替的生存挑战，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。   图 1.1"}</script><link rel="canonical" href="http://dstbp.com/2025/05/14/lzw/"><link rel="alternate" href="/atom.xml" title="DSTBP Blog" type="application/atom+xml"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="/css/font/fontawesome/css/all.min.css"><link data-pjax rel="stylesheet" href="/js/imaegoo/highlight.js/11.7.0/styles/atom-one-light.css"><link data-pjax rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="https://vercount.one/js" defer></script><link rel="stylesheet" href="/js/imaegoo/lightgallery/1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="/js/imaegoo/justifiedGallery/3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-K9WLQN9BFY" async></script><script>window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
@@ -33,14 +33,14 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/images/logo.jpg" alt="DSTBP Blog" height="28"><img class="logo-img-dark" src="/images/logo-dark.jpg" alt="DSTBP Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">时间轴</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/messages/">留言板</a><a class="navbar-item" href="/friends/">友链</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i><span>  目录</span></a><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><i class="fas fa-thumbtack level-item" title="Pinned"></i><span class="level-item"><time dateTime="2025-05-14T07:10:43.000Z" title="2025/5/14 15:10:43">2025-05-14</time>发表</span><span class="level-item"><time dateTime="2025-06-23T14:38:51.584Z" title="2025/6/23 22:38:51">2025-06-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span> / </span><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/%E4%BF%A1%E6%81%AF%E7%BC%96%E7%A0%81/">信息编码</a></span><span class="level-item">4 小时读完 (大约32592个字)</span><span class="level-item leancloud_visitors" id="/2025/05/14/lzw/" data-flag-title="[信息编码] LZW 压缩算法"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="twikoo_visitors"><i class="fa fa-spinner fa-spin"></i></span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">[信息编码] LZW 压缩算法</h1><div class="content"><h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h1><p>最近发现一个在线塔防策略游戏网站：<a target="_blank" rel="noopener" href="https://yorg.io/">https://yorg.io/</a>，基本玩法是<strong>昼夜交替的生存挑战</strong>，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/yorg%20游戏界面.png" width="800">
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/images/logo.jpg" alt="DSTBP Blog" height="28"><img class="logo-img-dark" src="/images/logo-dark.jpg" alt="DSTBP Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">时间轴</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/messages/">留言板</a><a class="navbar-item" href="/friends/">友链</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i><span>  目录</span></a><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><i class="fas fa-thumbtack level-item" title="Pinned"></i><span class="level-item"><time dateTime="2025-05-14T07:10:43.000Z" title="2025/5/14 15:10:43">2025-05-14</time>发表</span><span class="level-item"><time dateTime="2025-06-23T14:47:23.559Z" title="2025/6/23 22:47:23">2025-06-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span> / </span><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/%E4%BF%A1%E6%81%AF%E7%BC%96%E7%A0%81/">信息编码</a></span><span class="level-item">4 小时读完 (大约32592个字)</span><span class="level-item leancloud_visitors" id="/2025/05/14/lzw/" data-flag-title="[信息编码] LZW 压缩算法"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="twikoo_visitors"><i class="fa fa-spinner fa-spin"></i></span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">[信息编码] LZW 压缩算法</h1><div class="content"><h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h1><p>最近发现一个在线塔防策略游戏网站：<a target="_blank" rel="noopener" href="https://yorg.io/">https://yorg.io/</a>，基本玩法是<strong>昼夜交替的生存挑战</strong>，如图 1.1 所示，玩家需白天建立资源供应链，包括采矿（水晶、铁矿、铀矿等）、运输（通过运输机连接建筑）和工厂生产（如炮弹、弓箭、护盾等），为夜晚防御做准备，晚上僵尸从地图边界进攻，玩家需通过防御塔（箭塔、加农炮、闪电塔等）和城墙抵御攻击。每 10 天会刷新强力 BOSS。</p>
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/yorg%20游戏界面.png" width="800"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 1.1 yorg 游戏界面</span></center>
 
 <p>游玩时发现可以本地存档，下次游玩时加载存档文件继续上次进度。作为一名网安狗，当即就想到修改存档改变数值，达到无限水晶和技能点的效果。</p>
 <p>通过打开开发者工具并跟踪保存存档的过程，我们可以定位到具体的保存函数。这里不展开具体的跟踪步骤，基本思路是：以存档文件名为关键词进行搜索，找到触发保存的函数，再向下追踪调用栈，分析可知网页逻辑是先将存档数据保存到 localStorage 中，通过索引 <code>savegame_blob_xxxx</code> 查找对应的存档数据，再执行保存文件的操作。搜索关键词 <code>savegame_blob_</code> 找到处理函数，逻辑流程如下：<code>this.root.savegames.saveGame()</code> → <code>updateLastSavegame()</code> → <code>dataToString(t)</code> →<code>compressToEncodedURIComponent(t)</code> → <code>_compress(t)</code>。</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/compress%20函数调试.png" width="1000">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/compress%20函数调试.png" width="1000"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 1.2 _compress 函数调试</span></center>
 
@@ -50,7 +50,7 @@
 <p>但如果我们换种思路：先提取出不重复的单词，假设有 20 万个唯一单词。我们给每个单词编上一个编号，比如从 1 开始。只需 3 个字节（24 位）就能唯一表示一个编号（$ 2^{24} \gt 200000 $）。这样，每个单词只需用 3 个字节的编号代替原始文本。对于总共 60 万个单词，传输只需 60 万 × 3 &#x3D; 180 万字节。相比原来的 300 万字节，这种方法节省了超过三分之一的数据量。</p>
 <p>LZW 编码也是同理，把出现过的字符串映射到编号上，实现压缩。例如对于字符串：<code>ABABAB</code>，可以看到子串 AB 多次重复， 我们可以用一个特殊的符号（比如数字 2）来表示 AB ，那么原来的字符串就可以表示为：<code>AB22</code>。在这个例子中，数字 2 被称为子串 AB 的<strong>符号</strong>（Symbol）。那 A 和 B 本身有没有符号？当然有。我们可以规定 0 表示 A，1 表示 B。于是最终压缩后的数据是一个<strong>符号流</strong>（Symbol Stream）：<code>0122</code>。</p>
 <p>当然在真实的 LZW 编码中，A 和 B 不会用 0 和 1 表示，而是直接用它们的 ASCII 值。LZW 的初始字典包含所有 256 个 ASCII 字符，这些字符的符号就是它们各自的 ASCII 值。从 256 开始，编码过程中会动态添加新的字符串映射，这部分称为<strong>扩展字典</strong>（Extended Dictionary）。上面案例中在 LZW 编码会转成：<code>65 (A) 66 (B) 257 (AB)</code>。</p>
-<h3 id="2-1-2-字典的自解释"><a href="#2-1-2-字典的自解释" class="headerlink" title="2.1.2 字典的自解释"></a>2.1.2 字典的自解释</h3><p>有同学可能会问：为什么第一个 AB 不也用 2 表示？这样不又节省了一个符号？这个问题正好引出了 LZW 的一个核心思想：压缩后的数据是<strong>自解释</strong>的**（self-explaining）**。 在 LZW 编码中，压缩数据本身不包含完整的字典。也就是说，压缩文件里并不会存放“2 → AB”这种映射关系。LZW 编码、解码中除了初始字典（0 → A 和 1 → B），不会带有任何关于扩展字典的映射。</p>
+<h3 id="2-1-2-字典的自解释"><a href="#2-1-2-字典的自解释" class="headerlink" title="2.1.2 字典的自解释"></a>2.1.2 字典的自解释</h3><p>有同学可能会问：为什么第一个 AB 不也用 2 表示？这样不又节省了一个符号？这个问题正好引出了 LZW 的一个核心思想：压缩后的数据是<strong>自解释的（self-explaining）</strong>。 在 LZW 编码中，压缩数据本身不包含完整的字典。也就是说，压缩文件里并不会存放“2 → AB”这种映射关系。LZW 编码、解码中除了初始字典（0 → A 和 1 → B），不会带有任何关于扩展字典的映射。</p>
 <p>回到上面的示例。其编码过程（概念简化版）如下：</p>
 <ul>
 <li>读到 A → 查初始字典：A 的符号是 0，输出 0</li>
@@ -68,7 +68,7 @@
 <li>2 → AB，输出 AB</li>
 <li>2 → AB，输出 AB</li>
 </ul>
-<p>现在就解释为什么前面不能直接用 2。因为在前两个字符 A 和 B 被编码输出之前，AB 组合还不存在于字典中。一开始就用 2 表示 AB，解码器看到“2”时会不知道它指的是什么，它还没从前文推导出 2 → AB 的关系。所以前面的 0 和 1 不只是输出结果，<strong>它们本身就是构建后续字典的“依据”</strong>，是字典构建的“第一现场”。这就是“自解释”**：**压缩后的数据本身就包含了解压所需的全部信息，压缩时使用的字典不需要另外传输或存储。</p>
+<p>现在就解释为什么前面不能直接用 2。因为在前两个字符 A 和 B 被编码输出之前，AB 组合还不存在于字典中。一开始就用 2 表示 AB，解码器看到“2”时会不知道它指的是什么，它还没从前文推导出 2 → AB 的关系。所以前面的 0 和 1 不只是输出结果，<strong>它们本身就是构建后续字典的“依据”</strong>，是字典构建的“第一现场”。这就是“自解释”：压缩后的数据本身就包含了解压所需的全部信息，压缩时使用的字典不需要另外传输或存储。</p>
 <h2 id="2-2-算法详解"><a href="#2-2-算法详解" class="headerlink" title="2.2 算法详解"></a>2.2 算法详解</h2><p>下面我们通过一个稍微复杂的例子，完整展示 LZW 编码与解码的全过程，重点是理解：在解码时，每一步是如何对应编码过程中的操作，以及如何一步步还原原始字符串并重建编码时使用的字典。</p>
 <h3 id="2-2-1-编码算法"><a href="#2-2-1-编码算法" class="headerlink" title="2.2.1 编码算法"></a>2.2.1 编码算法</h3><p>编码器在处理原始字符串时，会不断读取新字符，并尝试将已有的字符串或组合进行编码。为了实现这一过程，我们维护两个变量：</p>
 <ul>
@@ -82,17 +82,17 @@
 <li><p>读取字符：读入一个新字符赋值给 C，然后将 P 和 C 合并为字符串 P+C。</p>
 </li>
 <li><p>字典查找：检查 P+C 是否在字典中：</p>
-<ol>
+<ul>
 <li>如果存在，则将 P 更新为 P+C。</li>
 <li>如果不存在，输出 P 对应的符号，在字典中建立 P+C 映射，并将 P 更新为 C。</li>
-</ol>
+</ul>
 </li>
 <li><p>重复处理：返回第 2 步，继续处理下一个字符，直到整个输入字符串处理完毕。</p>
 </li>
 <li><p>到达字符串尾部，没有新的 C 读入时，则将 P 对应的符号输出，结束。</p>
 </li>
 </ol>
-<img src="https://dstbp.com/data/imgs/posts/lzw/LZW 编码流程图.png" width="600">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/LZW 编码流程图.png" width="600"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 2.1 LZW 编码流程图</span></center>
 
@@ -298,11 +298,11 @@
 <center><span style="font-family:楷体;font-size:14px;">表 2.3 映射字典</span></center>
 
 <p>图 2.2 展示原字符串是如何对应到压缩后的编码，图 2.3 展示 LZW 编码如何保存映射到字典中。</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/原字符串对应压缩后编码.png" width="600">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/原字符串对应压缩后编码.png" width="600"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 2.2 原字符串对应压缩后编码</span></center>
 
-<img src="https://dstbp.com/data/imgs/posts/lzw/字符串字典映射.png" width="600">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/字符串字典映射.png" width="600"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 2.3 字符串字典映射</span></center>
 
@@ -335,7 +335,7 @@
 </li>
 <li>回到第 3 步，继续处理下一个符号，直到读完整个符号流。</li>
 </ol>
-<img src="https://dstbp.com/data/imgs/posts/lzw/LZW 解码流程图.png" width="600">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/LZW 解码流程图.png" width="600"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 2.4 LZW 解码流程图</span></center>
 
@@ -841,7 +841,7 @@
 </tbody></table>
 <center><span style="font-family:楷体;font-size:14px;">表 2.13 压缩率对比</span></center>
 
-<img src="https://dstbp.com/data/imgs/posts/lzw/各语言压缩率对比柱状图.png" width="700">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/各语言压缩率对比柱状图.png" width="700"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 2.5 各语言压缩率对比柱状图</span></center>
 
@@ -887,7 +887,7 @@
 </tbody></table>
 <center><span style="font-family:楷体;font-size:14px;">表 2.14 压缩时间对比</span></center>
 
-<img src="https://dstbp.com/data/imgs/posts/lzw/各语言压缩时间对比柱状图.png" width="700">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/各语言压缩时间对比柱状图.png" width="700"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 2.6 各语言压缩时间对比柱状图</span></center>
 
@@ -912,11 +912,11 @@
 <li><strong>文件尾（GIF Trailer）</strong>：表示文件结束。</li>
 </ul>
 <p>我们以一个具体的 GIF 文件为例，使用十六进制编辑器（如 010 Editor）进行逐段分析，来直观地说明 GIF 文件的各个组成部分。</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/GIF 文件头部分.png" width="700">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/GIF 文件头部分.png" width="700"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 3.1 GIF 文件头部分</span></center>
 
-<img src="https://dstbp.com/data/imgs/posts/lzw/GIF 文件数据部分.png" width="700">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/GIF 文件数据部分.png" width="700"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 3.2 GIF 文件数据部分</span></center>
 
@@ -1008,7 +1008,7 @@
 </li>
 </ol>
 <p>整体结构图如图 3.3 所示：</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/GIF 文件结构图.png" width="600">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/GIF 文件结构图.png" width="600"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 3.3 GIF 文件结构图</span></center>
 
@@ -1024,13 +1024,13 @@
 <li>行循环移位：奇数行整体循环移位$ r_1 $，偶数行整体循环移位$ r_2 $。</li>
 </ul>
 <p>以$ b &#x3D; 4, c_1 &#x3D; 2, c_2 &#x3D; 3, r_1 &#x3D; 1, r_2 &#x3D; 2 $为例，置乱过程如图 4.1 所示：</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/字典置乱举例.png" width="600">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/字典置乱举例.png" width="600"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 4.1 字典置乱举例</span></center>
 
 <p>在所有字符完成压缩加密后，解密与解压缩过程依赖相同的密钥来重构与编码时一致的字典顺序。由于插入位置是通过带密钥的哈希函数确定的，未持有密钥的攻击者无法准确还原字典结构，因此无法解密数据。</p>
 <p>除此之外，整个算法由包括两部分，除了改进的 LZW 算法外，还有一个密钥调度程序（Key Scheduling Algorithm），其功能就是产生出指定位数密钥流，密钥流一部分来实施安全压缩，另一部分作为掩码用于与结果数据进行异或。算法原理图如图 4.2 所示。</p>
-<img src="https://dstbp.com/data/imgs/posts/lzw/算法原理图.png" width="500">
+<center><img src="https://dstbp.com/data/imgs/posts/lzw/算法原理图.png" width="500"></center>
 
 <center><span style="font-family:楷体;font-size:14px;">图 4.2 算法原理图</span></center>
 
