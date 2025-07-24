@@ -28,7 +28,8 @@
       columnLeft.style.top = null;
     } else {
       if (columnLeft) {
-        columnLeft.style.top = '20px'; // 吸顶，距离顶部20px
+        columnLeft.style.top = $(window).height() - columnLeft.scrollHeight - 10 + 'px';
+        // columnLeft.style.top = '20px'; // 吸顶，距离顶部20px
       } else {
         setTimeout(function () {
           columnLeft = $('.column-left')[0];
