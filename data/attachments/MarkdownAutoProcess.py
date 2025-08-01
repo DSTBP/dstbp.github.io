@@ -188,7 +188,7 @@ class MarkdownProcess:
         processed_content = self.format_captions(processed_content)
 
         # 处理标题
-        processed_content = self.bold_titles(processed_content)
+        # processed_content = self.bold_titles(processed_content)
 
         # 处理空行
         processed_content = self.add_br_before_h1(processed_content)
