@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[古典密码] 图像替换密码 - DSTBP Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DSTBP Blog"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DSTBP Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="序言标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为隐写式单表替换密码（steganographic mo"><meta property="og:type" content="article"><meta property="og:title" content="[古典密码] 图像替换密码"><meta property="og:url" content="http://dstbp.com/2025/07/14/steg-sub/"><meta property="og:site_name" content="DSTBP Blog"><meta property="og:description" content="序言标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为隐写式单表替换密码（steganographic mo"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://dstbp.com/data/imgs/posts/GSC/Thumbnail.png"><meta property="article:published_time" content="2025-07-14T04:30:00.000Z"><meta property="article:modified_time" content="2025-08-01T02:35:38.503Z"><meta property="article:author" content="DSTBP"><meta property="article:tag" content="密码学"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://dstbp.com/data/imgs/posts/GSC/Thumbnail.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://dstbp.com/2025/07/14/steg-sub/"},"headline":"[古典密码] 图像替换密码","image":["https://dstbp.com/data/imgs/posts/GSC/Thumbnail.png"],"datePublished":"2025-07-14T04:30:00.000Z","dateModified":"2025-08-01T02:35:38.503Z","author":{"@type":"Person","name":"DSTBP"},"publisher":{"@type":"Organization","name":"DSTBP Blog","logo":{"@type":"ImageObject","url":{"light":"/images/logo.jpg","dark":"/images/logo-dark.jpg"}}},"description":"序言标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为隐写式单表替换密码（steganographic mo"}</script><link rel="canonical" href="http://dstbp.com/2025/07/14/steg-sub/"><link rel="alternate" href="/atom.xml" title="DSTBP Blog" type="application/atom+xml"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="/css/font/fontawesome/css/all.min.css"><link data-pjax rel="stylesheet" href="/js/imaegoo/highlight.js/11.7.0/styles/atom-one-light.css"><link data-pjax rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="https://vercount.one/js" defer></script><link rel="stylesheet" href="/js/imaegoo/lightgallery/1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="/js/imaegoo/justifiedGallery/3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-K9WLQN9BFY" async></script><script>window.dataLayer = window.dataLayer || [];
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>[古典密码] 图像替换密码 - DSTBP Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="DSTBP Blog"><meta name="msapplication-TileImage" content="/images/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="DSTBP Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="序言标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为隐写式单表替换密码（steganographic mo"><meta property="og:type" content="article"><meta property="og:title" content="[古典密码] 图像替换密码"><meta property="og:url" content="http://dstbp.com/2025/07/14/steg-sub/"><meta property="og:site_name" content="DSTBP Blog"><meta property="og:description" content="序言标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为隐写式单表替换密码（steganographic mo"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://dstbp.com/data/imgs/posts/GSC/Thumbnail.png"><meta property="article:published_time" content="2025-07-14T04:30:00.000Z"><meta property="article:modified_time" content="2025-08-01T02:41:33.470Z"><meta property="article:author" content="DSTBP"><meta property="article:tag" content="密码学"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://dstbp.com/data/imgs/posts/GSC/Thumbnail.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://dstbp.com/2025/07/14/steg-sub/"},"headline":"[古典密码] 图像替换密码","image":["https://dstbp.com/data/imgs/posts/GSC/Thumbnail.png"],"datePublished":"2025-07-14T04:30:00.000Z","dateModified":"2025-08-01T02:41:33.470Z","author":{"@type":"Person","name":"DSTBP"},"publisher":{"@type":"Organization","name":"DSTBP Blog","logo":{"@type":"ImageObject","url":{"light":"/images/logo.jpg","dark":"/images/logo-dark.jpg"}}},"description":"序言标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为隐写式单表替换密码（steganographic mo"}</script><link rel="canonical" href="http://dstbp.com/2025/07/14/steg-sub/"><link rel="alternate" href="/atom.xml" title="DSTBP Blog" type="application/atom+xml"><link rel="icon" href="/images/favicon.svg"><link rel="stylesheet" href="/css/font/fontawesome/css/all.min.css"><link data-pjax rel="stylesheet" href="/js/imaegoo/highlight.js/11.7.0/styles/atom-one-light.css"><link data-pjax rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="https://vercount.one/js" defer></script><link rel="stylesheet" href="/js/imaegoo/lightgallery/1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="/js/imaegoo/justifiedGallery/3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-K9WLQN9BFY" async></script><script>window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
@@ -37,178 +37,183 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/images/logo.jpg" alt="DSTBP Blog" height="28"><img class="logo-img-dark" src="/images/logo-dark.jpg" alt="DSTBP Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">时间轴</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/messages/">留言板</a><a class="navbar-item" href="/friends/">友链</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i><span>  目录</span></a><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-14T04:30:00.000Z" title="2025/7/14 12:30:00">2025-07-14</time>发表</span><span class="level-item"><time dateTime="2025-08-01T02:35:38.503Z" title="2025/8/1 10:35:38">2025-08-01</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span> / </span><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/">古典密码</a></span><span class="level-item">43 分钟读完 (大约6410个字)</span><span class="level-item leancloud_visitors" id="/2025/07/14/steg-sub/" data-flag-title="[古典密码] 图像替换密码"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="twikoo_visitors"><i class="fa fa-spinner fa-spin"></i></span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">[古典密码] 图像替换密码</h1><div class="content"><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a><strong>序言</strong></h1><p>标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为<strong>隐写式单表替换密码</strong>（steganographic monoalphabetic substitution cipher）。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-3-column"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img class="logo-img" src="/images/logo.jpg" alt="DSTBP Blog" height="28"><img class="logo-img-dark" src="/images/logo-dark.jpg" alt="DSTBP Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives/">时间轴</a><a class="navbar-item" href="/categories/">分类</a><a class="navbar-item" href="/tags/">标签</a><a class="navbar-item" href="/messages/">留言板</a><a class="navbar-item" href="/friends/">友链</a><a class="navbar-item" href="/about/">关于</a></div><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i><span>  目录</span></a><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2025-07-14T04:30:00.000Z" title="2025/7/14 12:30:00">2025-07-14</time>发表</span><span class="level-item"><time dateTime="2025-08-01T02:41:33.470Z" title="2025/8/1 10:41:33">2025-08-01</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a><span> / </span><a class="link-muted" href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/">古典密码</a></span><span class="level-item">43 分钟读完 (大约6410个字)</span><span class="level-item leancloud_visitors" id="/2025/07/14/steg-sub/" data-flag-title="[古典密码] 图像替换密码"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="twikoo_visitors"><i class="fa fa-spinner fa-spin"></i></span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">[古典密码] 图像替换密码</h1><div class="content"><h1 id="序言"><a href="#序言" class="headerlink" title="序言"></a><strong>序言</strong></h1><p>标准式单表替换密码中，明文与密文均由 26 个字母构成，仅字母的对应顺序被重新调整。而另一种单表替换密码则另辟蹊径：它不再依赖标准字母表，而是将明文映射到自定义码表中 —— 替换对象可以是符号、数字、非拉丁字母，甚至图形。经此处理，密文会变成一串完全陌生的符号，持有对应码表者才能解密。这类密码常将明文隐藏在看似普通的文本或排版中，因此被称为<strong>隐写式单表替换密码</strong>（steganographic monoalphabetic substitution cipher）。</p>
 <h1 id="1-培根密码"><a href="#1-培根密码" class="headerlink" title="1. 培根密码"></a><strong>1. 培根密码</strong></h1><h2 id="1-1-加解密原理"><a href="#1-1-加解密原理" class="headerlink" title="1.1 加解密原理"></a><strong>1.1 加解密原理</strong></h2><p><strong>培根密码</strong>（Bacon’s Cipher）是由法兰西斯·培根（Francis Bacon）在 16 世纪提出的一种加密方法。它将每个字母编码为由 5 个字符组成的字符串，每个字符使用两种形式区分（如 A 和 B、点与划、正体与斜体等），每 5 个字符表示一个字母。解密时按 5 位分组，根据映射表还原为原始字母。</p>
 <p>本质上，培根密码是一种基于二进制的编码方式，只不过将传统的 0 和 1 替换为字母 a 和 b。该密码系统有两种主要的加密方式，分别对应两个不同的编码表。</p>
 <p><strong>第一种加密方式</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">A</td>
-<td align="center">AAAAA</td>
-<td align="center">G</td>
-<td align="center">AABBA</td>
-<td align="center">N</td>
-<td align="center">ABBAA</td>
-<td align="center">T</td>
-<td align="center">BAABA</td>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">AAAAA</td>
+<td style="text-align:center">G</td>
+<td style="text-align:center">AABBA</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">ABBAA</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">BAABA</td>
 </tr>
 <tr>
-<td align="center">B</td>
-<td align="center">AAAAB</td>
-<td align="center">H</td>
-<td align="center">AABBB</td>
-<td align="center">O</td>
-<td align="center">ABBAB</td>
-<td align="center">U &#x2F; V</td>
-<td align="center">BAABB</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">AAAAB</td>
+<td style="text-align:center">H</td>
+<td style="text-align:center">AABBB</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">ABBAB</td>
+<td style="text-align:center">U / V</td>
+<td style="text-align:center">BAABB</td>
 </tr>
 <tr>
-<td align="center">C</td>
-<td align="center">AAABA</td>
-<td align="center">I &#x2F; J</td>
-<td align="center">ABAAA</td>
-<td align="center">P</td>
-<td align="center">ABBBA</td>
-<td align="center">W</td>
-<td align="center">BABAA</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">AAABA</td>
+<td style="text-align:center">I / J</td>
+<td style="text-align:center">ABAAA</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">ABBBA</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">BABAA</td>
 </tr>
 <tr>
-<td align="center">D</td>
-<td align="center">AAABB</td>
-<td align="center">K</td>
-<td align="center">ABAAB</td>
-<td align="center">Q</td>
-<td align="center">ABBBB</td>
-<td align="center">X</td>
-<td align="center">BABAB</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">AAABB</td>
+<td style="text-align:center">K</td>
+<td style="text-align:center">ABAAB</td>
+<td style="text-align:center">Q</td>
+<td style="text-align:center">ABBBB</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">BABAB</td>
 </tr>
 <tr>
-<td align="center">E</td>
-<td align="center">AABAA</td>
-<td align="center">L</td>
-<td align="center">ABABA</td>
-<td align="center">R</td>
-<td align="center">BAAAA</td>
-<td align="center">W</td>
-<td align="center">BABBA</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">AABAA</td>
+<td style="text-align:center">L</td>
+<td style="text-align:center">ABABA</td>
+<td style="text-align:center">R</td>
+<td style="text-align:center">BAAAA</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">BABBA</td>
 </tr>
 <tr>
-<td align="center">F</td>
-<td align="center">AABAB</td>
-<td align="center">M</td>
-<td align="center">ABABB</td>
-<td align="center">S</td>
-<td align="center">BAAAB</td>
-<td align="center">Z</td>
-<td align="center">BABBB</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">AABAB</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">ABABB</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">BAAAB</td>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">BABBB</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">表 1.1 24 个字母映射表</span></center>
 
 <p><strong>第二种加密方式</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
-<th align="center"><strong>字符</strong></th>
-<th align="center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
+<th style="text-align:center"><strong>字符</strong></th>
+<th style="text-align:center"><strong>培根密码</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">A</td>
-<td align="center">AAAAA</td>
-<td align="center">H</td>
-<td align="center">AABBB</td>
-<td align="center">O</td>
-<td align="center">ABBBA</td>
-<td align="center">U</td>
-<td align="center">BABAA</td>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">AAAAA</td>
+<td style="text-align:center">H</td>
+<td style="text-align:center">AABBB</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">ABBBA</td>
+<td style="text-align:center">U</td>
+<td style="text-align:center">BABAA</td>
 </tr>
 <tr>
-<td align="center">B</td>
-<td align="center">AAAAB</td>
-<td align="center">I</td>
-<td align="center">ABAAA</td>
-<td align="center">P</td>
-<td align="center">ABBBB</td>
-<td align="center">V</td>
-<td align="center">BABAB</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">AAAAB</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">ABAAA</td>
+<td style="text-align:center">P</td>
+<td style="text-align:center">ABBBB</td>
+<td style="text-align:center">V</td>
+<td style="text-align:center">BABAB</td>
 </tr>
 <tr>
-<td align="center">C</td>
-<td align="center">AAABA</td>
-<td align="center">J</td>
-<td align="center">ABAAB</td>
-<td align="center">Q</td>
-<td align="center">BAAAA</td>
-<td align="center">W</td>
-<td align="center">BABBA</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">AAABA</td>
+<td style="text-align:center">J</td>
+<td style="text-align:center">ABAAB</td>
+<td style="text-align:center">Q</td>
+<td style="text-align:center">BAAAA</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">BABBA</td>
 </tr>
 <tr>
-<td align="center">D</td>
-<td align="center">AAABB</td>
-<td align="center">K</td>
-<td align="center">ABABA</td>
-<td align="center">R</td>
-<td align="center">BAAAB</td>
-<td align="center">X</td>
-<td align="center">BABBB</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">AAABB</td>
+<td style="text-align:center">K</td>
+<td style="text-align:center">ABABA</td>
+<td style="text-align:center">R</td>
+<td style="text-align:center">BAAAB</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">BABBB</td>
 </tr>
 <tr>
-<td align="center">E</td>
-<td align="center">AABAA</td>
-<td align="center">L</td>
-<td align="center">ABABB</td>
-<td align="center">S</td>
-<td align="center">BAABA</td>
-<td align="center">Y</td>
-<td align="center">BBAAA</td>
+<td style="text-align:center">E</td>
+<td style="text-align:center">AABAA</td>
+<td style="text-align:center">L</td>
+<td style="text-align:center">ABABB</td>
+<td style="text-align:center">S</td>
+<td style="text-align:center">BAABA</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">BBAAA</td>
 </tr>
 <tr>
-<td align="center">F</td>
-<td align="center">AABAB</td>
-<td align="center">M</td>
-<td align="center">ABBAA</td>
-<td align="center">T</td>
-<td align="center">BAABB</td>
-<td align="center">Z</td>
-<td align="center">BBAAB</td>
+<td style="text-align:center">F</td>
+<td style="text-align:center">AABAB</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">ABBAA</td>
+<td style="text-align:center">T</td>
+<td style="text-align:center">BAABB</td>
+<td style="text-align:center">Z</td>
+<td style="text-align:center">BBAAB</td>
 </tr>
 <tr>
-<td align="center">G</td>
-<td align="center">AABBA</td>
-<td align="center">N</td>
-<td align="center">ABBAB</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<td style="text-align:center">G</td>
+<td style="text-align:center">AABBA</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">ABBAB</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">表 1.2 26 个字母映射表</span></center>
 
 <p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BaconCipher</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;培根密码加解密类&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 字符到培根密码的映射表（使用A和B表示）</span></span><br><span class="line">        <span class="variable language_">self</span>.char_to_bacon = &#123;</span><br><span class="line">            <span class="string">&#x27;A&#x27;</span>: <span class="string">&#x27;AAAAA&#x27;</span>, <span class="string">&#x27;B&#x27;</span>: <span class="string">&#x27;AAAAB&#x27;</span>, <span class="string">&#x27;C&#x27;</span>: <span class="string">&#x27;AAABA&#x27;</span>, <span class="string">&#x27;D&#x27;</span>: <span class="string">&#x27;AAABB&#x27;</span>, <span class="string">&#x27;E&#x27;</span>: <span class="string">&#x27;AABAA&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;F&#x27;</span>: <span class="string">&#x27;AABAB&#x27;</span>, <span class="string">&#x27;G&#x27;</span>: <span class="string">&#x27;AABBA&#x27;</span>, <span class="string">&#x27;H&#x27;</span>: <span class="string">&#x27;AABBB&#x27;</span>, <span class="string">&#x27;I&#x27;</span>: <span class="string">&#x27;ABAAA&#x27;</span>, <span class="string">&#x27;J&#x27;</span>: <span class="string">&#x27;ABAAB&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;K&#x27;</span>: <span class="string">&#x27;ABABA&#x27;</span>, <span class="string">&#x27;L&#x27;</span>: <span class="string">&#x27;ABABB&#x27;</span>, <span class="string">&#x27;M&#x27;</span>: <span class="string">&#x27;ABBAA&#x27;</span>, <span class="string">&#x27;N&#x27;</span>: <span class="string">&#x27;ABBAB&#x27;</span>, <span class="string">&#x27;O&#x27;</span>: <span class="string">&#x27;ABBBA&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;P&#x27;</span>: <span class="string">&#x27;ABBBB&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>: <span class="string">&#x27;BAAAA&#x27;</span>, <span class="string">&#x27;R&#x27;</span>: <span class="string">&#x27;BAAAB&#x27;</span>, <span class="string">&#x27;S&#x27;</span>: <span class="string">&#x27;BAABA&#x27;</span>, <span class="string">&#x27;T&#x27;</span>: <span class="string">&#x27;BAABB&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;U&#x27;</span>: <span class="string">&#x27;BABAA&#x27;</span>, <span class="string">&#x27;V&#x27;</span>: <span class="string">&#x27;BABAB&#x27;</span>, <span class="string">&#x27;W&#x27;</span>: <span class="string">&#x27;BABBA&#x27;</span>, <span class="string">&#x27;X&#x27;</span>: <span class="string">&#x27;BABBB&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>: <span class="string">&#x27;BBAAA&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;Z&#x27;</span>: <span class="string">&#x27;BBAAB&#x27;</span>,  <span class="comment"># 传统培根密码中I和J、U和V通常共用编码</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 培根密码到字符的反向映射</span></span><br><span class="line">        <span class="variable language_">self</span>.bacon_to_char = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="variable language_">self</span>.char_to_bacon.items()&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">self, text: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;加密&quot;&quot;&quot;</span></span><br><span class="line">        encrypted = []</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> text:</span><br><span class="line">            <span class="keyword">if</span> char.isalpha():  <span class="comment"># 仅对字母进行加密</span></span><br><span class="line">                encrypted.append(<span class="variable language_">self</span>.char_to_bacon.get(char.upper(), <span class="string">&#x27;&#x27;</span>))</span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment"># 非字母字符直接保留</span></span><br><span class="line">                encrypted.append(char)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(encrypted)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">self, bacon_code: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;解密：按5位一组解析字母编码&quot;&quot;&quot;</span></span><br><span class="line">        decoded = []</span><br><span class="line">        current_code = <span class="string">&#x27;&#x27;</span>  <span class="comment"># 用于累积5位培根码</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> bacon_code:</span><br><span class="line">            <span class="keyword">if</span> char <span class="keyword">in</span> (<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>):  <span class="comment"># 属于培根码的字符</span></span><br><span class="line">                current_code += char</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(current_code) == <span class="number">5</span>:  <span class="comment"># 凑够5位则解析</span></span><br><span class="line">                    decoded.append(<span class="variable language_">self</span>.bacon_to_char.get(current_code, current_code))</span><br><span class="line">                    current_code = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment"># 非培根码字符（标点、数字等）</span></span><br><span class="line">                <span class="comment"># 先处理当前累积的编码（如果有）</span></span><br><span class="line">                <span class="keyword">if</span> current_code:</span><br><span class="line">                    decoded.append(<span class="variable language_">self</span>.bacon_to_char.get(current_code, current_code))</span><br><span class="line">                    current_code = <span class="string">&#x27;&#x27;</span></span><br><span class="line">                decoded.append(char)  <span class="comment"># 直接保留非编码字符</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 处理剩余未解析的编码（若有）</span></span><br><span class="line">        <span class="keyword">if</span> current_code:</span><br><span class="line">            decoded.append(<span class="variable language_">self</span>.bacon_to_char.get(current_code, current_code))</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(decoded)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    orginal = <span class="string">&#x27;Hello, I am DSTBP! 123&#x27;</span></span><br><span class="line"></span><br><span class="line">    bc = BaconCipher()</span><br><span class="line">    encrypted = bc.encrypt(orginal)</span><br><span class="line">    decrypted = bc.decrypt(encrypted)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;原始文本：<span class="subst">&#123;orginal&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;加密后：<span class="subst">&#123;encrypted&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;解密后：<span class="subst">&#123;decrypted&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    始文本：Hello, I am DSTBP! 123</span></span><br><span class="line"><span class="string">    加密后：AABBBAABAAABABBABABBABBBA, ABAAA AAAAAABBAA AAABBBAABABAABBAAAABABBBB! 123</span></span><br><span class="line"><span class="string">    解密后：HELLO, I AM DSTBP! 123</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
+<p><br></p>
 <h1 id="2-摩斯电码"><a href="#2-摩斯电码" class="headerlink" title="2. 摩斯电码"></a><strong>2. 摩斯电码</strong></h1><h2 id="2-1-编码原理"><a href="#2-1-编码原理" class="headerlink" title="2.1 编码原理"></a><strong>2.1 编码原理</strong></h2><p><strong>摩斯电码</strong>（Morse Code）相信许多人并不陌生，著名的“SOS”求救信号（三短三长三短）就源于它。摩斯密码是一种通过“通断”信号传递信息的编码系统，由美国人艾尔菲德・维尔和萨缪尔・摩尔斯于 1836 年发明。它使用一系列 <strong>点（·）</strong> 和 <strong>划（—）</strong> 的组合来表示字母、数字和标点符号。</p>
 <p>摩斯密码由两种基本信号构成：</p>
 <ul>
@@ -221,173 +226,177 @@
 <li>字符之间间隔 3t</li>
 <li>单词之间间隔 7t</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left"><strong>字符</strong></th>
-<th align="left"><strong>电码符号</strong></th>
-<th align="left"><strong>字符</strong></th>
-<th align="left"><strong>电码符号</strong></th>
-<th align="left"><strong>字符</strong></th>
-<th align="left"><strong>电码符号</strong></th>
-<th align="left"><strong>字符</strong></th>
-<th align="left"><strong>电码符号</strong></th>
+<th style="text-align:left"><strong>字符</strong></th>
+<th style="text-align:left"><strong>电码符号</strong></th>
+<th style="text-align:left"><strong>字符</strong></th>
+<th style="text-align:left"><strong>电码符号</strong></th>
+<th style="text-align:left"><strong>字符</strong></th>
+<th style="text-align:left"><strong>电码符号</strong></th>
+<th style="text-align:left"><strong>字符</strong></th>
+<th style="text-align:left"><strong>电码符号</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">A</td>
-<td align="left"><code>·—</code></td>
-<td align="left">B</td>
-<td align="left"><code>—···</code></td>
-<td align="left">C</td>
-<td align="left"><code>—·—·</code></td>
-<td align="left">D</td>
-<td align="left"><code>—··</code></td>
+<tbody>
+<tr>
+<td style="text-align:left">A</td>
+<td style="text-align:left"><code>·—</code></td>
+<td style="text-align:left">B</td>
+<td style="text-align:left"><code>—···</code></td>
+<td style="text-align:left">C</td>
+<td style="text-align:left"><code>—·—·</code></td>
+<td style="text-align:left">D</td>
+<td style="text-align:left"><code>—··</code></td>
 </tr>
 <tr>
-<td align="left">E</td>
-<td align="left"><code>·</code></td>
-<td align="left">F</td>
-<td align="left"><code>··—·</code></td>
-<td align="left">G</td>
-<td align="left"><code>——·</code></td>
-<td align="left">H</td>
-<td align="left"><code>····</code></td>
+<td style="text-align:left">E</td>
+<td style="text-align:left"><code>·</code></td>
+<td style="text-align:left">F</td>
+<td style="text-align:left"><code>··—·</code></td>
+<td style="text-align:left">G</td>
+<td style="text-align:left"><code>——·</code></td>
+<td style="text-align:left">H</td>
+<td style="text-align:left"><code>····</code></td>
 </tr>
 <tr>
-<td align="left">I</td>
-<td align="left"><code>··</code></td>
-<td align="left">J</td>
-<td align="left"><code>·———</code></td>
-<td align="left">K</td>
-<td align="left"><code>—·—</code></td>
-<td align="left">L</td>
-<td align="left"><code>·—··</code></td>
+<td style="text-align:left">I</td>
+<td style="text-align:left"><code>··</code></td>
+<td style="text-align:left">J</td>
+<td style="text-align:left"><code>·———</code></td>
+<td style="text-align:left">K</td>
+<td style="text-align:left"><code>—·—</code></td>
+<td style="text-align:left">L</td>
+<td style="text-align:left"><code>·—··</code></td>
 </tr>
 <tr>
-<td align="left">M</td>
-<td align="left"><code>——</code></td>
-<td align="left">N</td>
-<td align="left"><code>—·</code></td>
-<td align="left">O</td>
-<td align="left"><code>———</code></td>
-<td align="left">P</td>
-<td align="left"><code>·——·</code></td>
+<td style="text-align:left">M</td>
+<td style="text-align:left"><code>——</code></td>
+<td style="text-align:left">N</td>
+<td style="text-align:left"><code>—·</code></td>
+<td style="text-align:left">O</td>
+<td style="text-align:left"><code>———</code></td>
+<td style="text-align:left">P</td>
+<td style="text-align:left"><code>·——·</code></td>
 </tr>
 <tr>
-<td align="left">Q</td>
-<td align="left"><code>——·—</code></td>
-<td align="left">R</td>
-<td align="left"><code>·—·</code></td>
-<td align="left">S</td>
-<td align="left"><code>···</code></td>
-<td align="left">T</td>
-<td align="left"><code>—</code></td>
+<td style="text-align:left">Q</td>
+<td style="text-align:left"><code>——·—</code></td>
+<td style="text-align:left">R</td>
+<td style="text-align:left"><code>·—·</code></td>
+<td style="text-align:left">S</td>
+<td style="text-align:left"><code>···</code></td>
+<td style="text-align:left">T</td>
+<td style="text-align:left"><code>—</code></td>
 </tr>
 <tr>
-<td align="left">U</td>
-<td align="left"><code>··—</code></td>
-<td align="left">V</td>
-<td align="left"><code>···—</code></td>
-<td align="left">W</td>
-<td align="left"><code>·——</code></td>
-<td align="left">X</td>
-<td align="left"><code>—··—</code></td>
+<td style="text-align:left">U</td>
+<td style="text-align:left"><code>··—</code></td>
+<td style="text-align:left">V</td>
+<td style="text-align:left"><code>···—</code></td>
+<td style="text-align:left">W</td>
+<td style="text-align:left"><code>·——</code></td>
+<td style="text-align:left">X</td>
+<td style="text-align:left"><code>—··—</code></td>
 </tr>
 <tr>
-<td align="left">Y</td>
-<td align="left"><code>—·——</code></td>
-<td align="left">Z</td>
-<td align="left"><code>——··</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left"><code>—·——</code></td>
+<td style="text-align:left">Z</td>
+<td style="text-align:left"><code>——··</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left">0</td>
-<td align="left"><code>—————</code></td>
-<td align="left">1</td>
-<td align="left"><code>·————</code></td>
-<td align="left">2</td>
-<td align="left"><code>··———</code></td>
-<td align="left">3</td>
-<td align="left"><code>···——</code></td>
+<td style="text-align:left">0</td>
+<td style="text-align:left"><code>—————</code></td>
+<td style="text-align:left">1</td>
+<td style="text-align:left"><code>·————</code></td>
+<td style="text-align:left">2</td>
+<td style="text-align:left"><code>··———</code></td>
+<td style="text-align:left">3</td>
+<td style="text-align:left"><code>···——</code></td>
 </tr>
 <tr>
-<td align="left">4</td>
-<td align="left"><code>····—</code></td>
-<td align="left">5</td>
-<td align="left"><code>·····</code></td>
-<td align="left">6</td>
-<td align="left"><code>—····</code></td>
-<td align="left">7</td>
-<td align="left"><code>——···</code></td>
+<td style="text-align:left">4</td>
+<td style="text-align:left"><code>····—</code></td>
+<td style="text-align:left">5</td>
+<td style="text-align:left"><code>·····</code></td>
+<td style="text-align:left">6</td>
+<td style="text-align:left"><code>—····</code></td>
+<td style="text-align:left">7</td>
+<td style="text-align:left"><code>——···</code></td>
 </tr>
 <tr>
-<td align="left">8</td>
-<td align="left"><code>———··</code></td>
-<td align="left">9</td>
-<td align="left"><code>————·</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td style="text-align:left">8</td>
+<td style="text-align:left"><code>———··</code></td>
+<td style="text-align:left">9</td>
+<td style="text-align:left"><code>————·</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left">.</td>
-<td align="left"><code>·—·—·—</code></td>
-<td align="left">:</td>
-<td align="left"><code>———···</code></td>
-<td align="left">,</td>
-<td align="left"><code>——··——</code></td>
-<td align="left">;</td>
-<td align="left"><code>—·—·—·</code></td>
+<td style="text-align:left">.</td>
+<td style="text-align:left"><code>·—·—·—</code></td>
+<td style="text-align:left">:</td>
+<td style="text-align:left"><code>———···</code></td>
+<td style="text-align:left">,</td>
+<td style="text-align:left"><code>——··——</code></td>
+<td style="text-align:left">;</td>
+<td style="text-align:left"><code>—·—·—·</code></td>
 </tr>
 <tr>
-<td align="left">?</td>
-<td align="left"><code>··——··</code></td>
-<td align="left">&#x3D;</td>
-<td align="left"><code>—···—</code></td>
-<td align="left">‘</td>
-<td align="left"><code>·————·</code></td>
-<td align="left">&#x2F;</td>
-<td align="left"><code>—··—·</code></td>
+<td style="text-align:left">?</td>
+<td style="text-align:left"><code>··——··</code></td>
+<td style="text-align:left">=</td>
+<td style="text-align:left"><code>—···—</code></td>
+<td style="text-align:left">‘</td>
+<td style="text-align:left"><code>·————·</code></td>
+<td style="text-align:left">/</td>
+<td style="text-align:left"><code>—··—·</code></td>
 </tr>
 <tr>
-<td align="left">!</td>
-<td align="left"><code>—·—·——</code></td>
-<td align="left">—</td>
-<td align="left"><code>—····—</code></td>
-<td align="left">_</td>
-<td align="left"><code>··——·—</code></td>
-<td align="left">“</td>
-<td align="left"><code>·—··—·</code></td>
+<td style="text-align:left">!</td>
+<td style="text-align:left"><code>—·—·——</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left"><code>—····—</code></td>
+<td style="text-align:left">_</td>
+<td style="text-align:left"><code>··——·—</code></td>
+<td style="text-align:left">“</td>
+<td style="text-align:left"><code>·—··—·</code></td>
 </tr>
 <tr>
-<td align="left">(</td>
-<td align="left"><code>—·——·</code></td>
-<td align="left">)</td>
-<td align="left"><code>—·——·—</code></td>
-<td align="left">$</td>
-<td align="left"><code>···—··—</code></td>
-<td align="left">&amp;</td>
-<td align="left"><code>· ···</code></td>
+<td style="text-align:left">(</td>
+<td style="text-align:left"><code>—·——·</code></td>
+<td style="text-align:left">)</td>
+<td style="text-align:left"><code>—·——·—</code></td>
+<td style="text-align:left">$</td>
+<td style="text-align:left"><code>···—··—</code></td>
+<td style="text-align:left">&amp;</td>
+<td style="text-align:left"><code>· ···</code></td>
 </tr>
 <tr>
-<td align="left">@</td>
-<td align="left"><code>·——·—·</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td style="text-align:left">@</td>
+<td style="text-align:left"><code>·——·—·</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">表 2.1 摩斯电码表</span></center>
 
 <p>由于摩斯码在传输中容易出现误差，且一些用途频繁的信息需要快速表达，因此摩斯系统中还引入了若干具有特定含义的缩写和固定组合，用于纠错、控制、确认或加速通信过程。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -396,7 +405,8 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>·—·—·</code></td>
 <td>AR</td>
 <td>停止，消息结束</td>
@@ -436,15 +446,14 @@
 <td></td>
 <td>错误</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">表 2.2 特殊摩斯电码表</span></center>
 
-<p>补充：在代码或文本格式中表示摩斯密码时，通常使用空格分隔每个字母。但为了在网页或文件中更清晰地展示，也常使用斜杠（&#x2F;）作为分隔符。例如，SOS 信号在摩斯码中为 <code>... --- ...</code>，采用斜杠格式表示为：<br><code>.../---/...</code></p>
+<p>补充：在代码或文本格式中表示摩斯密码时，通常使用空格分隔每个字母。但为了在网页或文件中更清晰地展示，也常使用斜杠（/）作为分隔符。例如，SOS 信号在摩斯码中为 <code>... --- ...</code>，采用斜杠格式表示为：<br><code>.../---/...</code></p>
 <p><strong>代码实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MorseCode</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;摩斯密码加解密类&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 字符到摩斯码映射表</span></span><br><span class="line">        <span class="variable language_">self</span>.char_to_morse = &#123;</span><br><span class="line">            <span class="string">&#x27;A&#x27;</span>: <span class="string">&#x27;.-&#x27;</span>, <span class="string">&#x27;B&#x27;</span>: <span class="string">&#x27;-...&#x27;</span>, <span class="string">&#x27;C&#x27;</span>: <span class="string">&#x27;-.-.&#x27;</span>, <span class="string">&#x27;D&#x27;</span>: <span class="string">&#x27;-..&#x27;</span>, <span class="string">&#x27;E&#x27;</span>: <span class="string">&#x27;.&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;F&#x27;</span>: <span class="string">&#x27;..-.&#x27;</span>, <span class="string">&#x27;G&#x27;</span>: <span class="string">&#x27;--.&#x27;</span>, <span class="string">&#x27;H&#x27;</span>: <span class="string">&#x27;....&#x27;</span>, <span class="string">&#x27;I&#x27;</span>: <span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;J&#x27;</span>: <span class="string">&#x27;.---&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;K&#x27;</span>: <span class="string">&#x27;-.-&#x27;</span>, <span class="string">&#x27;L&#x27;</span>: <span class="string">&#x27;.-..&#x27;</span>, <span class="string">&#x27;M&#x27;</span>: <span class="string">&#x27;--&#x27;</span>, <span class="string">&#x27;N&#x27;</span>: <span class="string">&#x27;-.&#x27;</span>, <span class="string">&#x27;O&#x27;</span>: <span class="string">&#x27;---&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;P&#x27;</span>: <span class="string">&#x27;.--.&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>: <span class="string">&#x27;--.-&#x27;</span>, <span class="string">&#x27;R&#x27;</span>: <span class="string">&#x27;.-.&#x27;</span>, <span class="string">&#x27;S&#x27;</span>: <span class="string">&#x27;...&#x27;</span>, <span class="string">&#x27;T&#x27;</span>: <span class="string">&#x27;-&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;U&#x27;</span>: <span class="string">&#x27;..-&#x27;</span>, <span class="string">&#x27;V&#x27;</span>: <span class="string">&#x27;...-&#x27;</span>, <span class="string">&#x27;W&#x27;</span>: <span class="string">&#x27;.--&#x27;</span>, <span class="string">&#x27;X&#x27;</span>: <span class="string">&#x27;-..-&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>: <span class="string">&#x27;-.--&#x27;</span>, <span class="string">&#x27;Z&#x27;</span>: <span class="string">&#x27;--..&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;0&#x27;</span>: <span class="string">&#x27;-----&#x27;</span>, <span class="string">&#x27;1&#x27;</span>: <span class="string">&#x27;.----&#x27;</span>, <span class="string">&#x27;2&#x27;</span>: <span class="string">&#x27;..---&#x27;</span>, <span class="string">&#x27;3&#x27;</span>: <span class="string">&#x27;...--&#x27;</span>, <span class="string">&#x27;4&#x27;</span>: <span class="string">&#x27;....-&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;5&#x27;</span>: <span class="string">&#x27;.....&#x27;</span>, <span class="string">&#x27;6&#x27;</span>: <span class="string">&#x27;-....&#x27;</span>, <span class="string">&#x27;7&#x27;</span>: <span class="string">&#x27;--...&#x27;</span>, <span class="string">&#x27;8&#x27;</span>: <span class="string">&#x27;---..&#x27;</span>, <span class="string">&#x27;9&#x27;</span>: <span class="string">&#x27;----.&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;.&#x27;</span>: <span class="string">&#x27;.-.-.-&#x27;</span>, <span class="string">&#x27;,&#x27;</span>: <span class="string">&#x27;--..--&#x27;</span>, <span class="string">&#x27;?&#x27;</span>: <span class="string">&#x27;..--..&#x27;</span>, <span class="string">&quot;&#x27;&quot;</span>: <span class="string">&#x27;.----.&#x27;</span>, <span class="string">&#x27;!&#x27;</span>: <span class="string">&#x27;-.-.--&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;/&#x27;</span>: <span class="string">&#x27;-..-.&#x27;</span>, <span class="string">&#x27;(&#x27;</span>: <span class="string">&#x27;-.--.&#x27;</span>, <span class="string">&#x27;)&#x27;</span>: <span class="string">&#x27;-.--.-&#x27;</span>, <span class="string">&#x27;&amp;&#x27;</span>: <span class="string">&#x27;.-...&#x27;</span>, <span class="string">&#x27;:&#x27;</span>: <span class="string">&#x27;---...&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;;&#x27;</span>: <span class="string">&#x27;-.-.-.&#x27;</span>, <span class="string">&#x27;=&#x27;</span>: <span class="string">&#x27;-...-&#x27;</span>, <span class="string">&#x27;+&#x27;</span>: <span class="string">&#x27;.-.-.&#x27;</span>, <span class="string">&#x27;-&#x27;</span>: <span class="string">&#x27;-....-&#x27;</span>, <span class="string">&#x27;_&#x27;</span>: <span class="string">&#x27;..--.-&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;&quot;&#x27;</span>: <span class="string">&#x27;.-..-.&#x27;</span>, <span class="string">&#x27;$&#x27;</span>: <span class="string">&#x27;...-..-&#x27;</span>, <span class="string">&#x27;@&#x27;</span>: <span class="string">&#x27;.--.-.&#x27;</span>, <span class="string">&#x27; &#x27;</span>: <span class="string">&#x27;/&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># 摩斯码到字符的反向映射</span></span><br><span class="line">        <span class="variable language_">self</span>.morse_to_char = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> <span class="variable language_">self</span>.char_to_morse.items()&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">self, text: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;将普通文本加密为摩斯密码&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(</span><br><span class="line">            <span class="variable language_">self</span>.char_to_morse.get(char.upper(), char) <span class="keyword">for</span> char <span class="keyword">in</span> text</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">self, morse_code: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="string">&quot;&quot;&quot;将摩斯密码解密为普通文本&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 用空格分割每个摩斯字符</span></span><br><span class="line">        morse_list = morse_code.strip().split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        decoded_chars = []</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> code <span class="keyword">in</span> morse_list:</span><br><span class="line">            <span class="keyword">if</span> code == <span class="string">&#x27;/&#x27;</span>:  <span class="comment"># 单词分隔符</span></span><br><span class="line">                decoded_chars.append(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                decoded_chars.append(<span class="variable language_">self</span>.morse_to_char.get(code, code))  <span class="comment"># 转换或保留原样</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(decoded_chars)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    plaintext = <span class="string">&#x27;Hello, I am DSTBP! 123&#x27;</span></span><br><span class="line">    ciphertext = MorseCode().encrypt(plaintext)</span><br><span class="line">    decrypted = MorseCode().decrypt(ciphertext)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;加密: <span class="subst">&#123;ciphertext&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;解密: <span class="subst">&#123;decrypted&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    加密: .... . .-.. .-.. --- --..-- / .. / .- -- / -.. ... - -... .--. -.-.-- / .---- ..--- ...--</span></span><br><span class="line"><span class="string">    解密: HELLO, I AM DSTBP! 123</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="3-猪圈密码"><a href="#3-猪圈密码" class="headerlink" title="3. 猪圈密码"></a><strong>3. 猪圈密码</strong></h1><p>猪圈密码，又称朱高密码、共济会密码或共济会员密码，是一种基于格形符号的字母替换加密方式。其主要形式包括传统猪圈密码和多种变体形式。</p>
 <h2 id="3-1-传统猪圈密码"><a href="#3-1-传统猪圈密码" class="headerlink" title="3.1 传统猪圈密码"></a><strong>3.1 传统猪圈密码</strong></h2><center><img src="https://dstbp.com/data/imgs/posts/smsc/ClassicalPigpenCipher2.jpg" width="600" alt=""></center>
 
@@ -521,7 +530,7 @@
 
 
 <h1 id="8-盲文"><a href="#8-盲文" class="headerlink" title="8. 盲文"></a><strong>8. 盲文</strong></h1><p>盲文（Braille），又称点字，是专为盲人阅读和书写设计的文字符号，采用由 6 个凸起圆点组成的基本结构。1829 年，法国盲人 Louis Braille 受“夜文”启发，创造出以凸点代替拉丁字母的盲文体系。每个字符由 2 列 × 3 行（共6个点位） 组成，从左边自上而下叫做 1、2、3 点，从右边自上而下叫做 4、5、6 点。凸起位置代表不同的字符，最多 63 个组合。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/Braille1.png" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/Braille1.png" width="250" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 8.1 布莱尔方位</span></center>
@@ -546,7 +555,7 @@
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 8.4 汉字盲文声母部分</span></center>
 
 <p><strong>韵母</strong></p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/ChineseBraille2.png" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/ChineseBraille2.png" width="500" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 8.5 汉字盲文韵母部分</span></center>
@@ -573,14 +582,14 @@
 
 <h1 id="9-夏多密码（曲折加密）"><a href="#9-夏多密码（曲折加密）" class="headerlink" title="9. 夏多密码（曲折加密）"></a><strong>9. 夏多密码（曲折加密）</strong></h1><p>夏多密码（Shadok Cipher）是麦克斯韦·格兰特在中篇小说《死亡之链》塑造夏多这一英雄人物中所自创的密码，整个夏多密码由两部分组成。</p>
 <p><strong>码表</strong></p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/ShadokCipher2.png" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/ShadokCipher2.png" width="500" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 9.1 夏多密码对应表</span></center>
 
 <p><strong>旋转方向</strong></p>
 <p>1.纸张上端朝上 2.上端朝右 3.上端朝下 4.上端朝左，这四个符号可以出现在密文中的任意位置，用于指示接下来的密文应以指定方向旋转纸张进行读取。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/ShadokCipher1.jpg" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/ShadokCipher1.jpg" width="300" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 9.2 夏多密码旋转指示表</span></center>
@@ -679,7 +688,7 @@
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 17.2 复合型音乐密码表</span></center>
 
-<h1 id="18-Zuish-文字"><a href="#18-Zuish-文字" class="headerlink" title="18. Zuish 文字"></a><strong>18. Zuish 文字</strong></h1><p>Zuish 语言是 Zu 民的古老语言。它具有字母、数字和符号，用于解决游戏《FEZ》中的许多难题。</p>
+<h1 id="18-Zuish-文字"><a href="#18-Zuish-文字" class="headerlink" title="18. Zuish 文字"></a><strong>18. Zuish 文字</strong></h1><p>Zuish 语言是 Zu 民的古老语言。它具有字母、数字和符号，用于解决游戏《FEZ》中的许多难题。</p>
 <center><img src="https://dstbp.com/data/imgs/posts/smsc/Zuish.png" width="600" alt=""></center>
 
 
@@ -697,7 +706,7 @@
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 19.1 《魔戒》精灵语演化谱系</span></center>
 
 <h2 id="19-1-昆雅语"><a href="#19-1-昆雅语" class="headerlink" title="19.1 昆雅语"></a><strong>19.1 昆雅语</strong></h2><p>下面是 Quenya 语的 Tengwar 字体。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/Quenya1.png" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/Quenya1.png" width="300" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 19.2 昆雅语对应表</span></center>
@@ -716,7 +725,7 @@
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 19.4 昆雅语数字对应表</span></center>
 
 <h2 id="19-2-辛达林语"><a href="#19-2-辛达林语" class="headerlink" title="19.2 辛达林语"></a><strong>19.2 辛达林语</strong></h2><p>下面是 Sindarin 语的 Tengwar 字体。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/Sindarin1.png" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/Sindarin1.png" width="300" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 19.5 辛达林语对应表</span></center>
@@ -780,7 +789,7 @@
 
 
 
-<h1 id="27-Dotsies-Font"><a href="#27-Dotsies-Font" class="headerlink" title="27. Dotsies Font"></a><strong>27. Dotsies Font</strong></h1><p>Dotsies 是一种像素化的字母表，26 个字母中的每一个都被一个由 5 个点组成的竖线替换，这些点可以是黑色或白色&#x2F;空的。</p>
+<h1 id="27-Dotsies-Font"><a href="#27-Dotsies-Font" class="headerlink" title="27. Dotsies Font"></a><strong>27. Dotsies Font</strong></h1><p>Dotsies 是一种像素化的字母表，26 个字母中的每一个都被一个由 5 个点组成的竖线替换，这些点可以是黑色或白色/空的。</p>
 <center><img src="https://dstbp.com/data/imgs/posts/smsc/Dotsies.jpg" width="600" alt=""></center>
 
 
@@ -807,7 +816,7 @@
 
 
 <h1 id="31-Minimoys-字母表"><a href="#31-Minimoys-字母表" class="headerlink" title="31. Minimoys 字母表"></a><strong>31. Minimoys 字母表</strong></h1><p>Minimoys 字母加密基于用 Minimoy 符号替换字母。26 个字母中的每一个都与一个 Minimoys 字母符号相关联。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/Minimoys.png" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/Minimoys.png" width="500" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 31.1 Minimoys 字母表</span></center>
@@ -815,7 +824,7 @@
 
 
 <h1 id="32-Bill-Symbol"><a href="#32-Bill-Symbol" class="headerlink" title="32. Bill Symbol"></a><strong>32. Bill Symbol</strong></h1><p>Bill Cipher 源自迪士尼动画《怪诞小镇》（Gravity Falls）系列的主要反派，他在某些剧集和书中使用了一个由符号组成的密码形式的代码来编写信息。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/BillSymbol.jpg" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/BillSymbol.jpg" width="500" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 32.1 Bill 符号表</span></center>
@@ -860,8 +869,8 @@
 
 
 
-<h2 id="35-2-希卡语"><a href="#35-2-希卡语" class="headerlink" title="35.2 希卡语"></a><strong>35.2 希卡语</strong></h2><p>希卡语（Sheikah Language）在《荒野之息》等作品中出现，是与古老的希卡科技相关的文字。常出现在 Sheikah 建筑和文物上，例如在古代神殿内。它主要用作拉丁字母的密码。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/Sheikah.jpg" width="600" alt=""></center>
+<h2 id="35-2-希卡语"><a href="#35-2-希卡语" class="headerlink" title="35.2 希卡语"></a><strong>35.2 希卡语</strong></h2><p>希卡语（Sheikah Language）在《荒野之息》等作品中出现，是与古老的希卡科技相关的文字。常出现在 Sheikah 建筑和文物上，例如在古代神殿内。它主要用作拉丁字母的密码。</p>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/Sheikah.jpg" width="500" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 35.4 希卡语字母表</span></center>
@@ -877,7 +886,7 @@
 
 
 <h1 id="36-小猫密码"><a href="#36-小猫密码" class="headerlink" title="36. 小猫密码"></a><strong>36. 小猫密码</strong></h1><p>猫咪可爱捏，小猫+字母还是很好分辨的。</p>
-<center><img src="https://dstbp.com/data/imgs/posts/smsc/Cat.jpg" width="600" alt=""></center>
+<center><img src="https://dstbp.com/data/imgs/posts/smsc/Cat.jpg" width="500" alt=""></center>
 
 
 <center style="margin-top: 10px; margin-bottom: 18px;"><span style="font-family:楷体;font-size:14px;">图 36.1 小猫密码字母表</span></center>
