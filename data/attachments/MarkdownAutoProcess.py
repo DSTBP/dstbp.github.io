@@ -118,7 +118,7 @@ class MarkdownProcess:
         pattern = r'^(#{1})\s+(.*?)\s*$'
         
         def add_break(match):
-            return f'<br>\n{match.group(1)} {match.group(2)}'
+            return f'<br>\r\n{match.group(1)} {match.group(2)}'
         
         return re.sub(pattern, add_break, content, flags=re.MULTILINE)
 
@@ -188,10 +188,10 @@ class MarkdownProcess:
         processed_content = self.format_captions(processed_content)
 
         # 处理标题
-        # processed_content = self.bold_titles(processed_content)
+        processed_content = self.bold_titles(processed_content)
 
         # 处理空行
-        processed_content = self.add_br_before_h1(processed_content)
+        # processed_content = self.add_br_before_h1(processed_content)
 
         # 保存文件
         self.save_file(processed_content)
