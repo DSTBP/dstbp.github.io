@@ -170,18 +170,18 @@ class MarkdownProcess:
             content,
             top=0, 
             recommend=0,
-            title='[古典密码] 图像替换密码',
-            date='2025-07-14 12:30:00',
-            tags=['密码学'],
-            categories=['密码学','古典密码'],
-            keywords=['图形替换', '古典密码', 'crypto', '密码学']
+            title='[隐私保护] 隐私保护机器学习综述',
+            date='2025-09-23 13:55:20',
+            tags=['数据安全'],
+            categories=['隐私保护','数据安全'],
+            keywords=['隐私保护', '机器学习', 'crypto', '密码学']
         )
 
         # 处理图片格式
         processed_content = self.process_markdown_images(
             processed_content, 
-            parent_dic='smsc',
-            img_name = ['ClassicalPigpenCipher2.jpg', 'ClassicalPigpenCipher1.jpg', 'VariantPigpenCipher.png', 'VariantPigpenCipher2.png', 'VariantPigpenCipher3.png', 'StandardGalactic.png', 'TheDancingMen.png', 'Semaphore.jpg', 'IMSF.png', 'AncientEgyptianHieroglyphics.png', 'Braille1.png', 'Braille2.png', 'Braille3.jpg', 'ChineseBraille1.png', 'ChineseBraille2.png', 'ChineseBraille3.png', 'Braille4.png', 'Braille5.png', 'ShadokCipher2.png', 'ShadokCipher1.jpg', 'ShadokCipher3.png', 'DaedricAlphabet.png', 'DragonLanguage.jpg', 'Draconic.png', 'Alien.jpg', 'AlienSpaceLanguage1.png', 'AlienSpaceLanguage2.png', 'Klingon.png', 'Dothraki.jpg', 'Simlish.png', 'Pokemon.png', 'ChromaticSubstitutionCiphers.png', 'CompoundMotivicCiphers.png', 'Zuish.png', 'Elvish1.png', 'Quenya1.png', 'Quenya2.png', 'Quenya3.png', 'Sindarin1.png', 'Sindarin2.png', 'Atlantean.png', 'AncientAlpahabet.png', 'Zentradi.png', 'Covenant.png', 'Betamaze.png', 'Birds.jpg', 'DaggersAlphabet.png', 'Dotsies.jpg', 'Dorabella.jpg', 'Enochian.jpg', 'Genshin.jpg', 'Minimoys.png', 'BillSymbol.jpg', 'hexahue.png', 'Cistercian.png', 'Hylian1.png', 'Hylian2.jpg', 'Hylian3.png', 'Sheikah.jpg', 'Gerudo.png', 'Cat.jpg', 'Aurebesh.png', 'Krypton.png', 'Wakandan.png']
+            parent_dic='PPML-Review',
+            img_name = ['machine learning process.png', 'The stage with privacy threats.png', 'Model Inversion Attack.png', 'Membership Inference Attack.png', 'Model Extraction Attack.png', 'Differential Privacy.png', 'Homomorphic Encryption.png', 'MPC.png']
         )
 
         # 处理注释
@@ -197,7 +197,7 @@ class MarkdownProcess:
         self.save_file(processed_content)
 
 if __name__ == "__main__":
-    input_path = r"D:\Utils\NeatDownloadManager\Downloads\[古典密码] 隐写式单表替换密码.md"
+    input_path = r"D:\Utils\NeatDownloadManager\Downloads\隐私保护机器学习综述.md"
     output_path = r"D:\Utils\NeatDownloadManager\Downloads\4.md"
 
     mp = MarkdownProcess(input_path, output_path)
