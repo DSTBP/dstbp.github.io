@@ -127,7 +127,8 @@ class MarkdownProcess:
         将Markdown中形如"图 X.X ..."或"表 X.X ..."的注释转换为居中楷体格式
         """
         # 正则表达式匹配"图 X.X ..."或"表 X.X ..."格式的注释
-        pattern = r'(图|表)\s+\d+\.\d+\s+.*?(?=\n|$|。|，|；|,|;)'
+        # pattern = r'(图|表)\s+\d+\.\d+\s+.*?(?=\n|$|。|，|；|,|;)'
+        pattern = r'(图|表)\s*(\d+\.\d+)\s+.*?(?=\n|$|。|，|；|,|;|：|:)'
         
         # 匹配到的注释转换为指定 HTML 格式
         def replace_caption(match):
