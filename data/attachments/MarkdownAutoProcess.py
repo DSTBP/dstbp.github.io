@@ -171,18 +171,19 @@ class MarkdownProcess:
             content,
             top=0, 
             recommend=0,
-            title='[隐私保护] 隐私保护机器学习综述',
-            date='2025-09-23 13:55:20',
+            title='[隐私保护] 函数秘密共享',
+            date='2025-10-29 19:44:20',
             tags=['数据安全'],
-            categories=['隐私保护','数据安全'],
-            keywords=['隐私保护', '机器学习', 'crypto', '密码学']
+            categories=['多方安全计算','数据安全'],
+            keywords=['FSS', '函数秘密共享', '多方安全计算', 'crypto', '密码学']
         )
 
         # 处理图片格式
         processed_content = self.process_markdown_images(
             processed_content, 
-            parent_dic='PPML-Review',
-            img_name = ['machine learning process.png', 'The stage with privacy threats.png', 'Model Inversion Attack.png', 'Membership Inference Attack.png', 'Model Extraction Attack.png', 'Differential Privacy.png', 'Homomorphic Encryption.png', 'MPC.png']
+            parent_dic='fss',
+            img_name = ['query_threats.png', 'tradition_pir.png', 'disturbance_curve.png', 'partition_table.png', 'binary_tree.png', 
+                        'prng_btree.png', 'btree_target.png', 'CW_use.png', 'DCF_btree.png']
         )
 
         # 处理注释
@@ -198,8 +199,8 @@ class MarkdownProcess:
         self.save_file(processed_content)
 
 if __name__ == "__main__":
-    input_path = r"D:\Utils\NeatDownloadManager\Downloads\隐私保护机器学习综述.md"
-    output_path = r"D:\Utils\NeatDownloadManager\Downloads\4.md"
+    input_path = r"C:\Users\r0xanne\Downloads\函数秘密共享.md"
+    output_path = r"C:\Users\r0xanne\Downloads\4.md"
 
     mp = MarkdownProcess(input_path, output_path)
     mp.main()
